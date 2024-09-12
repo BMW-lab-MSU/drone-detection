@@ -1,0 +1,11 @@
+*.asv
+*.m~
+
+*.DS_Store
+*.mex*
+
+*.pdf
+
+*.mat
+
+__pycache__
