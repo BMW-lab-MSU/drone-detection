@@ -1,15 +1,5 @@
-# insect-detection-remote-sensing-mdpi
+# drone-detection
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10055809.svg)](https://doi.org/10.5281/zenodo.10055809)
-
-This software is associated with the publication titled "Comparison of Supervised Learning and Changepoint Detection for Insect Detection in Lidar Data" by authors T. C. Vannoy, N. B. Sweeney, J. A. Shaw, and B. M. Whitaker." by authors T. C. Vannoy, N. B. Sweeney, J. A. Shaw, and B. M. Whitaker.
-
-The associated dataset can be found at [https://zenodo.org/doi/10.5281/zenodo.10055762](https://zenodo.org/doi/10.5281/zenodo.10055762). 
-
-- [Data setup](#data-setup)
-- [Running the code](#running-the-code)
-- [Citation](#citation)
-- [License](#license)
 
 # Data setup
 You can specify the locations of the data and results folders in the `beehiveDataSetup.m` script. By default, the scripts uses the following relative path setup, where `code` is a folder containing this repository:
@@ -37,7 +27,6 @@ You can specify the locations of the data and results folders in the `beehiveDat
         └── hyperparameter-tuning
 ```
 
-In the above setup, the dataset goes into the `raw` folder. The dataset can be downloaded from the [Zenodo archive](https://zenodo.org/doi/10.5281/zenodo.10055762).
 
 # Running the code
 
@@ -253,23 +242,6 @@ Once all the scripts have been run, the results can be analyzed and collected by
 
 ## Figures [📁](figures)
 For information on recreating the figures, please see the [figures](figures) folder.
-
-# Citation
-You can cite this code as follows:
-```
-@software{trevor_vannoy_2023_10055810,
-  author       = {Trevor C. Vannoy and
-                  Nathaniel B. Sweeney and
-                  Bradley M. Whitaker},
-  title        = {{BMW-lab-MSU/insect-detection-remote-sensing-mdpi 
-                   }},
-  month        = oct,
-  year         = 2023,
-  publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.10055809},
-  url          = {https://zenodo.org/doi/10.5281/zenodo.10055809}
-}
-```
 
 # License
 All code in this repository, except the [`gfpop`](changepoint-detection/gfpop) code, is licensed under the BSD 3-Clause License. `gfpop` is licensed under the MIT License.
