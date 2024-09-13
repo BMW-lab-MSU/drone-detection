@@ -7,7 +7,6 @@ combinedDataDir = baseDataDir + filesep + "combined";
 preprocessedDataDir = baseDataDir + filesep + "preprocessed";
 trainingDataDir = baseDataDir + filesep + "training";
 testingDataDir = baseDataDir + filesep + "testing";
-validationDataDir = baseDataDir + filesep + "validation";
 
 %% Results directories
 baseResultsDir = "../results";
