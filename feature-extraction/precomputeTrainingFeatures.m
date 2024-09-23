@@ -10,7 +10,7 @@ end
 beehiveDataSetup;
 
 %% Load data
-load(trainingDataDir + filesep + "trainingData","trainingData","trainingMetadata")
+load(trainingDataDir + filesep + "trainingDataRaw")
 
 
 %% Extract features
@@ -19,7 +19,7 @@ trainingFeatures = cell(size(trainingData));
 parfor i = 1:numel(trainingData)
     % Compute the average PRF; downstream feature extraction functions
     % need to know the sampling frequency
-    fs = averagePRF(trainingMetadata(i).Timestamps);
+    fs = averagePRF(trainingTimestamps(i));
 
     trainingFeatures{i} = extractFeatures(trainingData{i},fs);
 end
@@ -27,4 +27,5 @@ end
 
 %% Save data 
 save(trainingDataDir + filesep + "trainingFeatures.mat", ...
-    "trainingFeatures", "-v7.3");
+    'trainingFeatures', 'trainingLabels', 'trainingTimestamps', ...
+    'trainingMetadata', 'holdoutPartition', 'cvPartition', '-v7.3');

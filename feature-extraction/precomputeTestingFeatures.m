@@ -7,10 +7,10 @@ if isempty(gcp('nocreate'))
     parpool();
 end
 
-beehiveDataSetup;
+dataSetup;
 
 %% Load data
-load(testingDataDir + filesep + "testingData","testingData","testingMetadata")
+load(testingDataDir + filesep + "testingDataRaw")
 
 
 %% Extract features
@@ -19,7 +19,7 @@ testingFeatures = cell(size(testingData));
 parfor i = 1:numel(testingData)
     % Compute the average PRF; downstream feature extraction functions
     % need to know the sampling frequency
-    fs = averagePRF(testingMetadata(i).Timestamps);
+    fs = averagePRF(testingTimestamps(i));
 
     testingFeatures{i} = extractFeatures(testingData{i},fs);
 end
@@ -27,4 +27,5 @@ end
 
 %% Save data 
 save(testingDataDir + filesep + "testingFeatures.mat", ...
-    "testingFeatures", "-v7.3");
+    'testingFeatures', 'testingLabels', 'testingTimestamps', ...
+    'testingMetadata', 'holdoutPartition', '-v7.3');
