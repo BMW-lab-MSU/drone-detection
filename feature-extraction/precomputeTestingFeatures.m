@@ -10,7 +10,9 @@ end
 dataSetup;
 
 %% Load data
-load(testingDataDir + filesep + "testingDataRaw")
+load(testingDataDir + filesep + "testingDataRaw", 'testingData', ...
+    'testingLabels', 'testingTimestamps', 'testingMetadata', ...
+    'holdoutPartition')
 
 
 %% Extract features
@@ -19,7 +21,7 @@ testingFeatures = cell(size(testingData));
 parfor i = 1:numel(testingData)
     % Compute the average PRF; downstream feature extraction functions
     % need to know the sampling frequency
-    fs = averagePRF(testingTimestamps(i));
+    fs = averagePRF(testingTimestamps{i});
 
     testingFeatures{i} = extractFeatures(testingData{i},fs);
 end

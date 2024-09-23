@@ -10,7 +10,9 @@ end
 beehiveDataSetup;
 
 %% Load data
-load(trainingDataDir + filesep + "trainingDataRaw")
+load(trainingDataDir + filesep + "trainingDataRaw", 'trainingData',...
+    'trainingLabels', 'trainingTimestamps', 'trainingMetadata',...
+    'holdoutPartition','cvPartition')
 
 
 %% Extract features
