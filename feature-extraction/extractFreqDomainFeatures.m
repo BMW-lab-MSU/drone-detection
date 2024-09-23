@@ -30,13 +30,13 @@ arguments
     avgSamplingFrequency (1,1) {mustBeNumeric}
     opts.UseParallel (1,1) logical = false
     opts.NHarmonics = 3
-    opts.FilterPassband = [50 1200]
+    opts.FilterCutoff = 100
     opts.FilterOrder = 10
 end
 
 fftSize = width(X);
 
-filtered = bandpassFilter(X,opts.FilterOrder,opts.FilterPassband,...
+filtered = highpassFilter(X,opts.FilterOrder,opts.FilterCutoff,...
     avgSamplingFrequency);
 
 esd = abs(fft(filtered, [], 2)).^2;
