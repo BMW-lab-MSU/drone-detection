@@ -8,6 +8,8 @@ function splitData
 % Set random number generator properties for reproducibility
 rng(0, 'twister');
 
+SEC_PER_NS = 1e-9;
+
 dataSetup;
 
 DATA_FOLDERS = ["stan-fpv-feather", "stan-fpv-feather-prop-only"];
@@ -113,7 +115,7 @@ for i = 1:2
             cellIdx = (fileNum - 1)*N_IMAGES + imageNum;
 
             data{cellIdx} = h5data.data.data(imageNum,:,:);
-            timestamps{cellIdx} = h5data.data.timestamps(imageNum,:);
+            timestamps{cellIdx} = h5data.data.timestamps(imageNum,:) * SEC_PER_NS;
             labels{cellIdx} = rangebinLabels;
             meta{cellIdx} = metadata;
         end
