@@ -21,7 +21,7 @@ trainingFeatures = cell(size(trainingData));
 parfor i = 1:numel(trainingData)
     % Compute the average PRF; downstream feature extraction functions
     % need to know the sampling frequency
-    fs = averagePRF(trainingTimestamps(i));
+    fs = averagePRF(trainingTimestamps{i});
 
     trainingFeatures{i} = extractFeatures(trainingData{i},fs);
 end
