@@ -7,7 +7,7 @@ if isempty(gcp('nocreate'))
     parpool();
 end
 
-beehiveDataSetup;
+dataSetup;
 
 %% Load data
 load(trainingDataDir + filesep + "trainingDataRaw", 'trainingData',...
