@@ -84,14 +84,14 @@ for i = 1:2
         % file are snake_case.
         fieldNames = string(fields(h5data.parameters));
 
-        for fieldName = fieldNames
+        for fieldName = fieldNames.'
             titleCaseFieldName = snakeCase2TitleCase(fieldName);
 
             % If the struct field is also a struct, convert the nested
             % struct's field names
             if isstruct(h5data.parameters.(fieldName))
                 nestedFields = string(fields(h5data.parameters.(fieldName)));
-                for innerField = nestedFields
+                for innerField = nestedFields.'
                     titleCaseInnerField = snakeCase2TitleCase(innerField);
 
                     metadata.(titleCaseFieldName).(titleCaseInnerField) = ...
