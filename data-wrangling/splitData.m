@@ -67,6 +67,7 @@ for i = 1:2
 
         [h5data, h5meta] = loadh5(h5file);
 
+        metadata=struct();
 
         % The labels are the same for each image in the h5 file.
         rangebinLabels = h5data.parameters.rangebin_labels.labels;
