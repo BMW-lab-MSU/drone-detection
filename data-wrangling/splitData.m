@@ -51,8 +51,10 @@ for i = 1:2
 
     if i == 1
         setSize = holdoutPartition.TrainSize;
+        files = trainingFiles;
     else
         setSize = holdoutPartition.TestSize;
+        files = testingFiles;
     end
 
     data = cell(1, setSize * N_IMAGES);
@@ -61,7 +63,7 @@ for i = 1:2
     meta = cell(1, setSize * N_IMAGES);
 
     for fileNum = progress(1:setSize)
-        h5file = rawDataDir + filesep + trainingFiles(fileNum);
+        h5file = rawDataDir + filesep + files(fileNum);
 
         [h5data, h5meta] = loadh5(h5file);
 
