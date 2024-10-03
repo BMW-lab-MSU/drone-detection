@@ -74,7 +74,7 @@ for i = 1:2
 
         % Remove the labels from the parameters struct so they don't get put
         % in our metadata struct.
-        h5data.parameters = rmfield(h5data.parameters.rangebin_labels, 'labels');
+        h5data.parameters.rangebin_labels = rmfield(h5data.parameters.rangebin_labels, 'labels');
 
         % Get and format the metadata. The metadata is the same for all images.
 
