@@ -32,9 +32,10 @@ harmonicIdx = zeros(nHarmonics, 1, 'like', peakLocations);
 fundamentalBin = fundamentalLocation - 1;
 peakBins = peakLocations - 1;
 
-for i = 1:numel(peakLocations)
-    for harmonicNum = 1:nHarmonics
-        theoreticalHarmonicBin = fundamentalBin * harmonicNum;
+for harmonicNum = 1:nHarmonics
+    theoreticalHarmonicBin = fundamentalBin * harmonicNum;
+
+    for i = 1:numel(peakLocations)
 
         binDiff = abs(peakBins(i) - theoreticalHarmonicBin);
         if binDiff <= opts.nBins
