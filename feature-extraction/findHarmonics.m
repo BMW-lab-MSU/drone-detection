@@ -34,16 +34,17 @@ peakBins = peakLocations - 1;
 
 for i = 1:numel(peakLocations)
     for harmonicNum = 1:nHarmonics
-        harmonic = fundamentalBin * harmonicNum;
+        theoreticalHarmonicBin = fundamentalBin * harmonicNum;
 
-        binDiff = abs(peakBins(i) - harmonic);
+        binDiff = abs(peakBins(i) - theoreticalHarmonicBin);
         if binDiff <= opts.nBins
             % the peak is within range of the theoretical harmonic frequency.
             if harmonicBins(harmonicNum) ~= 0
                 % if a potential harmonic has already been found, check if the
                 % new candidate is closer than the previous candidate. Keep the 
                 % candidate that is closest to the theoretical harmonic.
-                previousbinDiff = abs(harmonicBins(harmonicNum) - harmonic);
+
+                previousbinDiff = abs(harmonicBins(harmonicNum) - theoreticalHarmonicBin);
                 if binDiff < previousbinDiff
                     harmonicBins(harmonicNum) = peakBins(i);
                     harmonicIdx(harmonicNum) = i;
