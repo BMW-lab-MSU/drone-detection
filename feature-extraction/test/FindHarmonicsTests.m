@@ -29,9 +29,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.02);
         end
@@ -55,9 +55,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.02);
         end
@@ -81,9 +81,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.02);
         end
@@ -109,9 +109,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.05);
         end
@@ -137,9 +137,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.05);
         end
@@ -168,9 +168,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.02);
         end
@@ -194,9 +194,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.02);
         end
@@ -222,9 +222,9 @@ classdef FindHarmonicsTests < matlab.unittest.TestCase
 
             fundamentalLoc = estimateFundamentalFreq(esd);
 
-            [~, peakLocations] = findpeaks(esd);
+            [peakHeights, peakLocations] = findpeaks(esd);
 
-            result = findHarmonics(peakLocations, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
+            result = findHarmonics(peakLocations, peakHeights, fundamentalLoc, nHarmonics, samplingFreq, numel(x));
 
             testCase.verifyEqual(result, expected, RelTol=0.02);
         end

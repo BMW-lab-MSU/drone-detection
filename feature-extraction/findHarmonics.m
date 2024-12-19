@@ -1,9 +1,10 @@
-function [harmonicFrequencies, harmonicIdx] = findHarmonics(peakLocations, fundamentalLocation, nHarmonics, avgSamplingFrequency, fftSize, opts)
+function [harmonicFrequencies, harmonicIdx] = findHarmonics(peakLocations, peakHeights, fundamentalLocation, nHarmonics, avgSamplingFrequency, fftSize, opts)
 % findHarmonics find the harmonic frequencies given a set of locations and
 % location of the fundamental frequency.
 %
 % Inputs:
 %   - peakLocations: Vector of peak locations/indices.
+%   - peakHeights: Vector of peak heights.
 %   - fundamentalLocation: Index where the fundamental frequency is located.
 %   - nHarmonics: Number of harmonics to look for.
 %   - avgSamplingFrequency: The average sampling frequency of the corresponding
@@ -17,6 +18,7 @@ function [harmonicFrequencies, harmonicIdx] = findHarmonics(peakLocations, funda
 
 arguments
     peakLocations (1,:) {mustBeInteger}
+    peakHeights (1,:) {mustBeNumeric}
     fundamentalLocation (1,1) {mustBeInteger}
     nHarmonics (1,1) {mustBeInteger}
     avgSamplingFrequency (1,1) {mustBeNumeric}
@@ -46,13 +48,14 @@ for harmonicNum = 1:nHarmonics
         binDiff = abs(peakBins(peakIdx) - theoreticalHarmonicBin);
         if binDiff <= opts.nBins
             % the peak is within range of the theoretical harmonic frequency.
+
             if harmonicBins(harmonicNum) ~= 0
                 % if a potential harmonic has already been found, check if the
-                % new candidate is closer than the previous candidate. Keep the 
-                % candidate that is closest to the theoretical harmonic.
+                % new candidate is taller than the previous candidate. Keep the 
+                % candidate that has the tallest peak height.
+                isNewPeakTaller = peakHeights(peakIdx) > peakHeights(harmonicIdx(harmonicNum));
 
-                previousbinDiff = abs(harmonicBins(harmonicNum) - theoreticalHarmonicBin);
-                if binDiff < previousbinDiff
+                if isNewPeakTaller
                     harmonicBins(harmonicNum) = peakBins(peakIdx);
                     harmonicIdx(harmonicNum) = peakIdx;
                 end

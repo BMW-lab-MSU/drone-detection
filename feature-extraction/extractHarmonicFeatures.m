@@ -62,7 +62,7 @@ end
 
 for i = 1:nRows
     % Grab the peaks that are harmonics of the fundamental
-    [harmonicFreq(i,:), harmonicIdx] = findHarmonics(peakLoc{i}, fundamental(i), nHarmonics, avgSamplingFrequency, fftSize);
+    [harmonicFreq(i,:), harmonicIdx] = findHarmonics(peakLoc{i}, peakHeight{i}, fundamental(i), nHarmonics, avgSamplingFrequency, fftSize);
     
     % Get features for the harmonics. If a harmonic wasn't found, harmonicIdx
     % will be 0. All related features to be 0 if the harmonic wasn't found.

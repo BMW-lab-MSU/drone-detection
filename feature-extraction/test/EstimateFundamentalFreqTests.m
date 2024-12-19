@@ -114,7 +114,7 @@ classdef EstimateFundamentalFreqTests < matlab.unittest.TestCase
 
             result = estimateFundamentalFreq(esd);
 
-            % results need to be within 3 bins; that's what the findHarmonics algorithm looks for
+            % results need to be within 2 bins; that's what the findHarmonics algorithm looks for
             testCase.verifyEqual(result, expected, "AbsTol", 2);
         end
 
@@ -136,7 +136,7 @@ classdef EstimateFundamentalFreqTests < matlab.unittest.TestCase
 
             result = estimateFundamentalFreq(esd);
 
-            % results need to be within 3 bins; that's what the findHarmonics algorithm looks for
+            % results need to be within 2 bins; that's what the findHarmonics algorithm looks for
             testCase.verifyEqual(result, expected);
         end
 
