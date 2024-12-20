@@ -30,16 +30,22 @@ arguments
     avgSamplingFrequency (1,1) {mustBeNumeric}
     opts.UseParallel (1,1) logical = false
     opts.NHarmonics = 3
-    opts.FilterCutoff = 100
-    opts.FilterOrder = 10
+    opts.UseHighPassFilter (1,1) logical = false
+    opts.FilterCutoff (1,1) {mustBeNumeric} = 100
+    opts.FilterOrder (1,1) {mustBeInteger}= 10
 end
 
 fftSize = width(X);
 
-filtered = highpassFilter(X,opts.FilterOrder,opts.FilterCutoff,...
-    avgSamplingFrequency);
+if opts.UseHighPassFilter
+    filtered = highpassFilter(X,opts.FilterOrder,opts.FilterCutoff,...
+        avgSamplingFrequency);
 
-esd = abs(fft(filtered, [], 2)).^2;
+    esd = abs(fft(filtered, [], 2)).^2;
+else
+    esd = abs(fft(X, [], 2)).^2;
+end
+
 
 % Only look at the positive frequencies
 esd = esd(:,1:end/2);
