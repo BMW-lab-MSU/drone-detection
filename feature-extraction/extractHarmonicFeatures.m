@@ -9,7 +9,7 @@ function features = extractHarmonicFeatures(esd, nHarmonics, avgSamplingFrequenc
 %       'HarmonicHeight'            - The height of the harmonic
 %       'harmonicFreq'              - The harmonic frequency in Hz
 %       'HarmonicWidth'             - The harmonic's half-prominence peak width
-%       'HarmonicProminence'        - The harmonic's prominence
+%       'HarmonicProminence'        - The harmonic's median-normalized prominence
 %
 %   The extracted features for all combinations of n-choose-2 harmonics are:
 %       'HarmonicHeightRatio'       - The ratio between harmonic heights
@@ -59,6 +59,24 @@ parfor (i = 1:nRows, nWorkers)
     peakWidth{i} = single(peakWidth{i});
     peakProminence{i} = single(peakProminence{i});
 end
+
+% Normalize peak prominence so the values can be compared between different
+% time series / rows. Since the average and max amplitudes of each row
+% differ, particuarly for rows with hard targets vs rows with faint
+% signals, the amplitude of the spectra varies. That is, rows with large
+% values (e.g., hard targets) result in large amplitudes in the spectrum.
+% This results in large prominence values. Consequently, a peak that isn't
+% actually prominent at all in the hard target's spectrum will have a much
+% larger prominence value than a very prominent peak in an oscillating
+% target's spectrum (e.g., insect, drone). This makes the prominence
+% features unable to be compared between rows.
+% 
+% For each row/spectrum, we normalize the prominences by the median promimence
+% because the median is less prone to outliers. In essence, the median promimence
+% should represent peaks in the noise floor because we expect most frequencies
+% to come from noise.
+peakProminence = cellfun(@(prominences) prominences / median(prominences),...
+    peakProminence, 'UniformOutput',false);
 
 for i = 1:nRows
     % Grab the peaks that are harmonics of the fundamental
