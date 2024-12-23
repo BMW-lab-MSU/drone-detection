@@ -91,6 +91,25 @@ for i = 1:nRows
             harmonicHeight(i,j) = peakHeight{i}(harmonicIdx(j));
         end
     end
+
+    % Eliminate peaks that aren't promiment. If a peak's prominence isn't at
+    % least 3 times the median prominence, we say it isn't prominent enough to
+    % be a fundamental or harmonic; in this case, we set all features for that
+    % peak to 0. Without this peak thresholding, we get harmonic feature values
+    % for every row, including rows that have nothing or a stationary target in them;
+    % these "false positive" features detract from the discriminating ability of
+    % the harmonic features and result in significant overlap between the class-wise
+    % harmonic feature distributions.
+    % NOTE: the peak promimences have already been normalized by the median
+    %       prominence, so the threshold value is simply 3.
+    prominenceThreshold = 3;
+
+    isPeakSignificant = harmonicProminence(i,:) >= prominenceThreshold;
+
+    harmonicFreq(i, ~isPeakSignificant) = 0;
+    harmonicWidth(i, ~isPeakSignificant) = 0;
+    harmonicProminence(i, ~isPeakSignificant) = 0;
+    harmonicHeight(i, ~isPeakSignificant) = 0;
     
     % Compute feature ratios for all n-choose-2 combinations of harmonics
     for n = 1:nHarmonicCombinations
@@ -105,6 +124,13 @@ for i = 1:nRows
         harmonicProminenceRatio(i, n) = harmonicProminence(i ,harmonic1) / harmonicProminence(i, harmonic2);
     end
 end
+
+% We may have divided by 0 when compting the ratio features, resulting in NaNs.
+% We don't want NaNs going into the machine learning models because the models
+% ignore any instances with NaNs.
+harmonicHeightRatio(isnan(harmonicHeightRatio)) = 0;
+harmonicWidthRatio(isnan(harmonicWidthRatio)) = 0;
+harmonicProminenceRatio(isnan(harmonicProminenceRatio)) = 0;
 
 % Assemble features into our output table
 features = table;
