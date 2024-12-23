@@ -71,8 +71,8 @@ end
 % target's spectrum (e.g., insect, drone). This makes the prominence
 % features unable to be compared between rows.
 % 
-% For each row/spectrum, we normalize the prominences by the median promimence
-% because the median is less prone to outliers. In essence, the median promimence
+% For each row/spectrum, we normalize the prominences by the median prominence
+% because the median is less prone to outliers. In essence, the median prominence
 % should represent peaks in the noise floor because we expect most frequencies
 % to come from noise.
 peakProminence = cellfun(@(prominences) prominences / median(prominences),...
