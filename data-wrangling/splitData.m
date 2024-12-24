@@ -16,10 +16,18 @@ DATA_FOLDERS = ["stan-fpv-feather", "stan-fpv-feather-prop-only"];
 
 N_IMAGES = 32;
 
+% There are some reflections in the data after the wall which are messing up the
+% features for the "nothing" class. That is, some of the "nothing" rows look
+% like the corresponding "drone" and "wall" rows. We will truncate the images
+% after the wall, since the wall was basically always at the same range bin
+% and there is definitely nothing past the wall... The last wall row in the
+% labels was 146. TRUNCATE_ROW gives a bit of margin after 146.
+TRUNCATE_ROW = 150;
+
 %% Find all the h5 files
 h5Filenames = DATA_FOLDERS(1) + filesep + ...
     string({dir(rawDataDir + filesep + DATA_FOLDERS(1) + filesep + "*.hdf5").name});
-h5Filenames = [h5Filenames, DATA_FOLDERS(2) + filesep + ...
+h5Filenames = [h5Filenames, DATA_FOLDERS(2) + filesep + ... 
     string({dir(rawDataDir + filesep + DATA_FOLDERS(2) + filesep + "*.hdf5").name})];
 
 nFiles = numel(h5Filenames);
@@ -117,9 +125,9 @@ for i = 1:2
         for imageNum = 1:N_IMAGES
             cellIdx = (fileNum - 1)*N_IMAGES + imageNum;
 
-            data{cellIdx} = h5data.data.data(imageNum,:,:);
+            data{cellIdx} = h5data.data.data(imageNum,1:TRUNCATE_ROW,:);
             timestamps{cellIdx} = h5data.data.timestamps(imageNum,:) * SEC_PER_NS;
-            labels{cellIdx} = rangebinLabels;
+            labels{cellIdx} = rangebinLabels(1:TRUNCATE_ROW);
             meta{cellIdx} = metadata;
         end
     end
