@@ -125,7 +125,7 @@ for i = 1:2
         for imageNum = 1:N_IMAGES
             cellIdx = (fileNum - 1)*N_IMAGES + imageNum;
 
-            data{cellIdx} = h5data.data.data(imageNum,1:TRUNCATE_ROW,:);
+            data{cellIdx} = squeeze(h5data.data.data(imageNum,1:TRUNCATE_ROW,:));
             timestamps{cellIdx} = h5data.data.timestamps(imageNum,:) * SEC_PER_NS;
             labels{cellIdx} = rangebinLabels(1:TRUNCATE_ROW);
             meta{cellIdx} = metadata;
