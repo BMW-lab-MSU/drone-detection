@@ -6,6 +6,7 @@ rawDataDir = baseDataDir + filesep + "raw";
 combinedDataDir = baseDataDir + filesep + "combined";
 preprocessedDataDir = baseDataDir + filesep + "preprocessed";
 trainingDataDir = baseDataDir + filesep + "training";
+validationDataDir = baseDataDir + filesep + "validation";
 testingDataDir = baseDataDir + filesep + "testing";
 
 %% Results directories
