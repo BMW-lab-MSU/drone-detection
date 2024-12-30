@@ -5,7 +5,7 @@ function createCNN2d7LayerHyperparamSearchRange()
 CLASSIFIER_NAME = "CNN2d7Layer";
 
 % Set up data paths
-beehiveDataSetup;
+dataSetup;
 
 % Create the optimizable variables that will be used by bayesopt
 optimizableParams = [

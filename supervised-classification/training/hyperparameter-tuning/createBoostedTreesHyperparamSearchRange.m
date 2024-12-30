@@ -3,7 +3,7 @@ function createBoostedTreesHyperparamSearchRange()
 % SPDX-License-Identifier: BSD-3-Clause
 
 % Set up data paths
-beehiveDataSetup;
+dataSetup;
 
 % Create the optimizable variables that will be used by bayesopt
 optimizableParams = [

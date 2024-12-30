@@ -5,7 +5,7 @@ function createLinearSVMHyperparamSearchRange()
 CLASSIFIER_NAME = "LinearSVM";
 
 % Set up data paths
-beehiveDataSetup;
+dataSetup;
 
 % Create the optimizable variables that will be used by bayesopt
 optimizableParams = [
