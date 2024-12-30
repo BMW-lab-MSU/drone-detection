@@ -157,7 +157,7 @@ for i = 1:3
 
         clear 'trainingData' 'trainingLabels' 'trainingTimestamps' ...
             'trainingMetadata';
-    if i == 2
+    elseif i == 2
         validationData = data;
         validationLabels = labels;
         validationTimestamps = timestamps;
