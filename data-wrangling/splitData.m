@@ -36,10 +36,14 @@ nFiles = numel(h5Filenames);
 TESTING_PCT = 0.2;
 holdoutPartition = cvpartition(nFiles, "Holdout", TESTING_PCT);
 
-N_FOLDS = 5;
-cvPartition = cvpartition(holdoutPartition.TrainSize, "KFold", N_FOLDS);
+% 25% of the testing data is equal to 20% of the total data
+VALIDATION_PCT = 0.25;
+validationPartition = cvpartition(holdoutPartition.TrainSize, "Holdout", VALIDATION_PCT);
 
-trainingFiles = h5Filenames(training(holdoutPartition));
+trainValFiles = h5Filenames(training(holdoutPartition));
+trainingFiles = trainValFiles(training(validationPartition));
+validationFiles = trainValFiles(test(validationPartition));
+
 testingFiles = h5Filenames(test(holdoutPartition));
 
 
@@ -55,11 +59,14 @@ testingFiles = h5Filenames(test(holdoutPartition));
 % together to keep the training and testing sets disjoint.
 
 
-for i = 1:2
+for i = 1:3
 
     if i == 1
-        setSize = holdoutPartition.TrainSize;
+        setSize = validationPartition.TrainSize;
         files = trainingFiles;
+    elseif i == 2
+        setSize = validationPartition.TestSize;
+        files = validationFiles;
     else
         setSize = holdoutPartition.TestSize;
         files = testingFiles;
@@ -75,7 +82,7 @@ for i = 1:2
 
         [h5data, h5meta] = loadh5(h5file);
 
-        metadata=struct();
+        metad3ta=struct();
 
         % The labels are the same for each image in the h5 file.
         rangebinLabels = h5data.parameters.rangebin_labels.labels;
@@ -146,10 +153,25 @@ for i = 1:2
         end
         save(trainingDataDir + filesep + "trainingDataRaw.mat", ...
             'trainingData', 'trainingLabels', 'trainingTimestamps', ...
-            'trainingMetadata', 'holdoutPartition', 'cvPartition', '-v7.3');
+            'trainingMetadata', 'holdoutPartition', 'validationPartition', '-v7.3');
 
         clear 'trainingData' 'trainingLabels' 'trainingTimestamps' ...
             'trainingMetadata';
+    if i == 2
+        validationData = data;
+        validationLabels = labels;
+        validationTimestamps = timestamps;
+        validationMetadata = meta;
+
+        if ~exist(validationDataDir, "dir")
+            mkdir(baseDataDir, "validation");
+        end
+        save(validationDataDir + filesep + "validationDataRaw.mat", ...
+            'validationData', 'validationLabels', 'validationTimestamps', ...
+            'validationMetadata', 'holdoutPartition', 'validationPartition', '-v7.3');
+
+        clear 'validationData' 'validationLabels' 'validationTimestamps' ...
+            'validationMetadata';
     else
         testingData = data;
         testingLabels = labels;
