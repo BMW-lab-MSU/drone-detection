@@ -12,7 +12,7 @@ dataSetup;
 %% Load data
 load(trainingDataDir + filesep + "trainingDataRaw", 'trainingData',...
     'trainingLabels', 'trainingTimestamps', 'trainingMetadata',...
-    'holdoutPartition','cvPartition')
+    'holdoutPartition','validationPartition')
 
 
 %% Extract features
@@ -30,4 +30,4 @@ end
 %% Save data 
 save(trainingDataDir + filesep + "trainingFeatures.mat", ...
     'trainingFeatures', 'trainingLabels', 'trainingTimestamps', ...
-    'trainingMetadata', 'holdoutPartition', 'cvPartition', '-v7.3');
+    'trainingMetadata', 'holdoutPartition', 'validationPartition', '-v7.3');
