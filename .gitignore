@@ -8,4 +8,6 @@
 
 *.mat
 
+log
+
 __pycache__
