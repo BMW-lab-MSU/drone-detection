@@ -87,6 +87,14 @@ for i = 1:3
         % The labels are the same for each image in the h5 file.
         rangebinLabels = h5data.parameters.rangebin_labels.labels;
 
+        % The labels are 0 = nothing, 1 = drone, and 2 = wall. However, I want
+        % to do a binary classification, so the wall labels need to be set to 0
+        rangebinLabels(rangebinLabels == 2) = 0;
+
+        % Elsewhere in the code, the labels are expected to be boolean. In
+        % particular, the 1D CNN expects false/true label names.
+        rangebinLabels = logical(rangebinLabels);
+
         % Remove the labels from the parameters struct so they don't get put
         % in our metadata struct.
         h5data.parameters.rangebin_labels = rmfield(h5data.parameters.rangebin_labels, 'labels');
