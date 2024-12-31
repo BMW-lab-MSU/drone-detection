@@ -2,7 +2,7 @@
 clear;
 
 % Data path setup
-beehiveDataSetup;
+dataSetup;
 
 
 %% Data Loading

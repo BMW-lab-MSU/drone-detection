@@ -1,7 +1,7 @@
 % SPDX-License-Identifier: BSD-3-Clause
 
 % Data path setup
-beehiveDataSetup;
+dataSetup;
 
 
 %% Data Loading

@@ -6,7 +6,7 @@
 
 
 clear figures;
-beehiveDataSetup;
+dataSetup;
 
 %% General Paper Settings
 

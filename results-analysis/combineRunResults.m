@@ -12,8 +12,8 @@ clear;
 % metrics after hyperparameter tuning, instead of just saving the bayesopt
 % results object. We also wouldn't need the getValidationResults function.
 % This is just a note for the future to consider refactoring the code...
-beehiveDataSetup;
-load(validationDataDir + filesep + "validationData","validationRowLabels");
+dataSetup;
+load(validationDataDir + filesep + "validationDataRaw","validationLabels");
 
 %% Setup parameters
 % Change these directories as needed.

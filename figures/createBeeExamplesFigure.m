@@ -1,7 +1,7 @@
 % SPDX-License-Identifier: BSD-3-Clause
 clear;
 
-beehiveDataSetup;
+dataSetup;
 
 
 %% General Paper Settings

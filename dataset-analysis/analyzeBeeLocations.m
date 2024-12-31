@@ -1,7 +1,7 @@
 function analyzeBeeLocations
 % SPDX-License-Identifier: BSD-3-Clause
 
-beehiveDataSetup;
+dataSetup;
 
 labelTable = readtable(rawDataDir + filesep + "labels.csv");
 

@@ -8,7 +8,7 @@ function displayDataSamplingResults(classifierName)
 
 % SPDX-License-Identifier: BSD-3-Clause
 
-beehiveDataSetup;
+dataSetup;
 
 % Find all the data-sampling results files
 files = dir(samplingResultsDir + filesep + classifierName + "Undersample*.mat");

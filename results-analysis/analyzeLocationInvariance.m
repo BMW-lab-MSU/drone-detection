@@ -7,7 +7,7 @@ function analyzeLocationInvariance
 
 % SPDX-License-Identifier: BSD-3-Clause
 
-beehiveDataSetup;
+dataSetup;
 
 % The 5 layer 2D CNN had the best recall, so we're looking at that one.
 load(testingResultsDir + filesep + "CNN2d3LayerResults.mat");

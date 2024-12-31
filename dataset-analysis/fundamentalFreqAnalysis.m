@@ -2,7 +2,7 @@
 
 % SPDX-License-Identifier: BSD-3-Clause
 
-beehiveDataSetup;
+dataSetup;
 
 dates = ["2022-06-23" "2022-06-24" "2022-07-28" "2022-07-29"];
 folderPrefix = "MSU-horticulture-farm-bees-";

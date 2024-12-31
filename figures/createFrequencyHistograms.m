@@ -1,7 +1,7 @@
 % SPDX-License-Identifier: BSD-3-Clause
 
 %% Set up data
-beehiveDataSetup;
+dataSetup;
 
 load(trainingDataDir + filesep + "trainingFeatures","trainingFeatures");
 load(trainingDataDir + filesep + "trainingData","trainingRowLabels");

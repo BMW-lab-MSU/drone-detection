@@ -15,7 +15,7 @@ arguments
 end
 
 % Setup paths
-beehiveDataSetup;
+dataSetup;
 
 % Load in the classifier
 load(finalClassifierDir + filesep + classifierName,"classifier");

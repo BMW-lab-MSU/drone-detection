@@ -10,7 +10,7 @@ arguments
 end
 
 % Setup data paths
-beehiveDataSetup;
+dataSetup;
 
 % Open output file
 fd = fopen(samplingResultsDir + filesep + classifierName + "Results.txt", "w");

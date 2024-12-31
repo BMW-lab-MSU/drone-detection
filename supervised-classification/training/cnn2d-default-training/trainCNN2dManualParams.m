@@ -25,7 +25,7 @@ if opts.UseParallel
 end
 
 % Set up data paths
-beehiveDataSetup;
+dataSetup;
 
 % Load in the training data
 load(trainingDataDir + filesep + "trainingData","trainingData",...

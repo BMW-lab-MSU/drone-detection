@@ -3,7 +3,7 @@ fontName = 'Tex Gyre Pagella';
 fontSize = 10;
 figWidthFullPage = 18.46;
 
-beehiveDataSetup;
+dataSetup;
 
 classifiers = ["RUSBoost","AdaBoost","LinearSVM","StatsNeuralNetwork1Layer",...
     "StatsNeuralNetwork3Layer","StatsNeuralNetwork5Layer",...

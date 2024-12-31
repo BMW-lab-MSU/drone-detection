@@ -1,7 +1,7 @@
 % SPDX-License-Identifier: BSD-3-Clause
 function createDataSamplingGrid
 
-beehiveDataSetup;
+dataSetup;
 
 % Setup undersampling and augmentation ranges
 params.UndersamplingRatio = [0 0.25 0.5 0.75];

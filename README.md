@@ -2,7 +2,7 @@
 
 
 # Data setup
-You can specify the locations of the data and results folders in the `beehiveDataSetup.m` script. By default, the scripts uses the following relative path setup, where `code` is a folder containing this repository:
+You can specify the locations of the data and results folders in the `dataSetup.m` script. By default, the scripts uses the following relative path setup, where `code` is a folder containing this repository:
 ```
 ├── code
 ├── data
@@ -31,7 +31,7 @@ You can specify the locations of the data and results folders in the `beehiveDat
 # Running the code
 
 > [!IMPORTANT]
-> In general, you need to call `pathSetup.m` first before running anything, as that script adds all the folders in this repo to your MATLAB path. Additionally, if you use the default relative data path setup described above, you must run all of your code from the root of this repository, not the subfolders; if you specify full paths in `beehiveDataSetup.m`, then you can run the code from anywhere.
+> In general, you need to call `pathSetup.m` first before running anything, as that script adds all the folders in this repo to your MATLAB path. Additionally, if you use the default relative data path setup described above, you must run all of your code from the root of this repository, not the subfolders; if you specify full paths in `dataSetup.m`, then you can run the code from anywhere.
 
 > [!TIP]
 > This code is designed to run on a computing cluster. If you have access to a computing cluster that uses slurm, you can update and use the scripts in the `slurm` folder. The code will still run perfectly fine on a normal desktop computer&mdash;it will just take longer.

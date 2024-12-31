@@ -4,7 +4,7 @@
 
 % SPDX-License-Identifier: BSD-3-Clause
 
-beehiveDataSetup;
+dataSetup;
 
 resultsDirs = ["../results/testing","../results2/testing","../results3/testing"];
 

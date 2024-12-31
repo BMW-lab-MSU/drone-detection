@@ -11,7 +11,7 @@ arguments
     classifierName (1,1) string
 end
 
-beehiveDataSetup;
+dataSetup;
 
 % Find all the results files
 files = dir(samplingResultsDir + filesep + classifierName + "Undersample*.mat");

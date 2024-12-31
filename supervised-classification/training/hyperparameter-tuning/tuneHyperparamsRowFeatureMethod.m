@@ -33,7 +33,7 @@ if opts.UseParallel
 end
 
 % Set up data paths
-beehiveDataSetup;
+dataSetup;
 
 % Load in the best data sampling parameters for the classifier
 load(samplingResultsDir + filesep + classifierName + "BestParams",...

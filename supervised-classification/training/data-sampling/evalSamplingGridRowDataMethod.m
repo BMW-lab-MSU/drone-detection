@@ -27,7 +27,7 @@ if opts.UseParallel
 end
 
 % Set up data paths
-beehiveDataSetup;
+dataSetup;
 
 % Set the sampling grid parameters
 load(trainingDataDir + filesep + "samplingGridRowBased");
