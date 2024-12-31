@@ -50,25 +50,25 @@ disp("originalObjective = " + originalObjective);
 load(trainingDataDir + filesep + classifierName + "HyperparameterSearchValues");
 
 % Load in the training data
-load(trainingDataDir + filesep + "trainingData","trainingData",...
-    "trainingRowLabels","trainingMetadata");
+load(trainingDataDir + filesep + "trainingDataRaw","trainingData",...
+    "trainingLabels","trainingTimestamps");
 
 % Load in the validation data
-load(validationDataDir + filesep + "validationData",...
-    "validationData","validationRowLabels");
+load(validationDataDir + filesep + "validationDataRaw",...
+    "validationData","validationLabels");
 
 % Undersample/oversampling the data using the best parameters found during the
 % data sampling grid search
 [data,labels,~] = rowDataSampling(samplingParams.UndersampleRatio,...
-    samplingParams.NOversample,trainingData,trainingRowLabels,...
-    {trainingMetadata.Timestamps},UseParallel=opts.UseParallel);
+    samplingParams.NOversample,trainingData,trainingLabels,...
+    trainingTimestamps,UseParallel=opts.UseParallel);
 
 % Free up some memory
-clear "trainingData" "trainingMetadata";
+clear "trainingData" "trainingTimestamps";
 
 % Create the minimization function for bayesopt
 minfcn = @(optimizable)validationObjFcn(classifierType,data,labels,...
-    validationData,validationRowLabels,UseParallel=opts.UseParallel,...
+    validationData,validationLabels,UseParallel=opts.UseParallel,...
     UseGPU=opts.UseGPU,Static=originalHyperparameters,Optimizable=optimizable);
 
 % Seed the random number generator for reproducibility
@@ -98,6 +98,6 @@ end
 save(hyperparameterResultsDir + filesep + filename,...
     "hyperparams","results","-v7.3");
 
-writeValidationResultsToTxtFile(classifierName,true,results,validationRowLabels);
+writeValidationResultsToTxtFile(classifierName,true,results,validationLabels);
 
 end

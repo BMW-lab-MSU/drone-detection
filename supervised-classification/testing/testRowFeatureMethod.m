@@ -22,9 +22,9 @@ load(finalClassifierDir + filesep + classifierName,"classifier");
 
 % Load in the testing features and labels
 load(testingDataDir + filesep + "testingFeatures","testingFeatures");
-load(testingDataDir + filesep + "testingData","testingRowLabels");
+load(testingDataDir + filesep + "testingData","testingLabels");
 
-results.Row.TrueLabels = classifier.formatLabels(testingRowLabels);
+results.Row.TrueLabels = classifier.formatLabels(testingLabels);
 
 % Predict the row labels
 results.Row.PredictedLabels = predict(classifier,testingFeatures);

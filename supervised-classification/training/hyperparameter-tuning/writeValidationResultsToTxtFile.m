@@ -1,4 +1,4 @@
-function writeValidationResultsToTxtFile(classifierName,isRowMethod,results,validationRowLabels)
+function writeValidationResultsToTxtFile(classifierName,isRowMethod,results,validationLabels)
 
 % SPDX-License-Identifier: BSD-3-Clause
 
@@ -6,7 +6,7 @@ arguments
     classifierName (1,1) string
     isRowMethod (1,1) logical
     results (1,1)
-    validationRowLabels = []
+    validationLabels = []
 end
 
 % Setup data paths
@@ -33,9 +33,9 @@ if isRowMethod
     end
 
     if contains(classifierName,"CNN1d")
-        trueLabels = DeepLearning1dClassifier.formatLabels(validationRowLabels);
+        trueLabels = DeepLearning1dClassifier.formatLabels(validationLabels);
     else
-        trueLabels = StatsToolboxClassifier.formatLabels(validationRowLabels);
+        trueLabels = StatsToolboxClassifier.formatLabels(validationLabels);
     end
 
     % Compute the image-based results

@@ -5,7 +5,7 @@ dataSetup;
 
 % Setup undersampling and augmentation ranges
 params.UndersamplingRatio = [0 0.25 0.5 0.75];
-params.NSyntheticInsect = round([0,logspace(0,log10(100),3)]);
+params.NSynthetic = round([0,logspace(0,log10(100),3)]);
 
 samplingGrid = formatGridSearchParams(params);
 

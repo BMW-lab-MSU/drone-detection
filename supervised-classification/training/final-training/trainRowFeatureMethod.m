@@ -29,33 +29,33 @@ load(hyperparameterResultsDir + filesep + classifierName + "Hyperparams",...
     "hyperparams");
 
 % Load in the training data
-load(trainingDataDir + filesep + "trainingData","trainingData",...
-    "trainingRowLabels","trainingMetadata");
+load(trainingDataDir + filesep + "trainingDataRaw","trainingData",...
+    "trainingLabels","trainingTimestamps");
 load(trainingDataDir + filesep + "trainingFeatures","trainingFeatures");
 
 % Load in the validation data
-load(validationDataDir + filesep + "validationData",...
-    "validationData","validationRowLabels","validationMetadata");
+load(validationDataDir + filesep + "validationDataRaw",...
+    "validationData","validationLabels","validationTimestamps");
 load(validationDataDir + filesep + "validationFeatures","validationFeatures");
 
 % Combine the training and validation data into one set for training
 combinedData = horzcat(trainingData,validationData);
 combinedFeatures = horzcat(trainingFeatures,validationFeatures);
-combinedLabels = horzcat(trainingRowLabels,validationRowLabels);
-combinedMetadata = horzcat({trainingMetadata.Timestamps},...
-    {validationMetadata.Timestamps});
+combinedLabels = horzcat(trainingLabels,validationLabels);
+combinedTimestamps = horzcat(trainingTimestamps,...
+    validationTimestamps);
 
 % Free up some memory
-clear "trainingData" "trainingMetadata" "validationData" "validationMetadata" "validationRowLabels" "trainingRowLabels" "trainingFeatures" validationFeatures";
+clear "trainingData" "trainingTimestamps" "validationData" "validationTimestamps" "validationLabels" "trainingLabels" "trainingFeatures" validationFeatures";
 
 % Undersample/oversampling the data using the best parameters found during the
 % data sampling grid search
 [~,labels,features] = rowDataSampling(samplingParams.UndersampleRatio,...
     samplingParams.NOversample,combinedData,combinedLabels,...
-    combinedMetadata,combinedFeatures,UseParallel=opts.UseParallel);
+    combinedTimestamps,combinedFeatures,UseParallel=opts.UseParallel);
 
 % Free up more unneeded memory
-clear "combinedData" "combinedMetadata" "combinedFeatures" "combinedLabels"
+clear "combinedData" "combinedTimestamps" "combinedFeatures" "combinedLabels"
 
 % Assmeble the classifier's hyperparameter arguments
 params = classifierConstructor().formatOptimizableParams(hyperparams);

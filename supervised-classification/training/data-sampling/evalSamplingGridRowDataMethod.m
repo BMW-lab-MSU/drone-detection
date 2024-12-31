@@ -32,22 +32,22 @@ dataSetup;
 % Set the sampling grid parameters
 load(trainingDataDir + filesep + "samplingGridRowBased");
 undersampleRatio = samplingGrid(gridIndex,:).UndersamplingRatio;
-nOversample = samplingGrid(gridIndex,:).NSyntheticInsect;
+nOversample = samplingGrid(gridIndex,:).NSynthetic;
 
 % Load in the training data
-load(trainingDataDir + filesep + "trainingData","trainingData",...
-    "trainingRowLabels","trainingMetadata");
+load(trainingDataDir + filesep + "trainingDataRaw","trainingData",...
+    "trainingLabels","trainingTimestamps");
 
 % Load in the validation data
-load(validationDataDir + filesep + "validationData","validationData","validationRowLabels");
+load(validationDataDir + filesep + "validationDataRaw","validationData","validationLabels");
 
 % Undersample/oversampling the data
 [data,labels,~] = rowDataSampling(undersampleRatio,nOversample,...
-    trainingData,trainingRowLabels,{trainingMetadata.Timestamps},UseParallel=opts.UseParallel);
+    trainingData,trainingLabels,trainingTimestamps,UseParallel=opts.UseParallel);
 
 % Train and evaluate the classifier with the given data sampling parameters
 [objective,~,userdata] = validationObjFcn(classifierType,data,labels,...
-    validationData,validationRowLabels,UseParallel=opts.UseParallel,...
+    validationData,validationLabels,UseParallel=opts.UseParallel,...
     UseGPU=opts.UseGPU,Static=params.ClassifierParams);
 
 disp("objective = " + objective);

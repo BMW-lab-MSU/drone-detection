@@ -21,9 +21,9 @@ dataSetup;
 load(finalClassifierDir + filesep + classifierName,"classifier");
 
 % Load in the testing data and labels
-load(testingDataDir + filesep + "testingData","testingRowLabels","testingData");
+load(testingDataDir + filesep + "testingData","testingLabels","testingData");
 
-results.Row.TrueLabels = classifier.formatLabels(testingRowLabels);
+results.Row.TrueLabels = classifier.formatLabels(testingLabels);
 
 % Predict the row labels
 results.Row.PredictedLabels = predict(classifier,testingData);

@@ -27,27 +27,27 @@ load(hyperparameterResultsDir + filesep + classifierName + "Hyperparams",...
     "hyperparams");
 
 % Load in the training data
-load(trainingDataDir + filesep + "trainingData","trainingData",...
-    "trainingRowLabels","trainingMetadata");
+load(trainingDataDir + filesep + "trainingDataRaw","trainingData",...
+    "trainingLabels","trainingTimestamps");
 
 % Load in the validation data
-load(validationDataDir + filesep + "validationData",...
-    "validationData","validationRowLabels","validationMetadata");
+load(validationDataDir + filesep + "validationDataRaw",...
+    "validationData","validationLabels","validationTimestamps");
 
 % Combine the training and validation data into one set for training
 combinedData = horzcat(trainingData,validationData);
-combinedLabels = horzcat(trainingRowLabels,validationRowLabels);
-combinedMetadata = horzcat({trainingMetadata.Timestamps},...
-    {validationMetadata.Timestamps});
+combinedLabels = horzcat(trainingLabels,validationLabels);
+combinedTimestamps = horzcat(trainingTimestamps,...
+    validationTimestamps);
 
 % Free up some memory
-clear "trainingData" "trainingMetadata" "validationData" "validationMetadata" "validationRowLabels" "trainingRowLabels";
+clear "trainingData" "trainingTimestamps" "validationData" "validationTimestamps" "validationLabels" "trainingLabels";
 
 % Undersample/oversampling the data using the best parameters found during the
 % data sampling grid search
 [data,labels,~] = rowDataSampling(samplingParams.UndersampleRatio,...
     samplingParams.NOversample,combinedData,combinedLabels,...
-    combinedMetadata,UseParallel=opts.UseParallel);
+    combinedTimestamps,UseParallel=opts.UseParallel);
 
 disp(hyperparams)
 
