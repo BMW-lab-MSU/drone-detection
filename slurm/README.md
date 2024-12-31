@@ -19,6 +19,10 @@ sed -i '/account/d' *.slurm
 sed -i '/partition/d' *.slurm
 ```
 
-You can also use `sed` to batch update the `account` and `partition` parameters for files.
+You can also use `sed` to batch update the `account` and `partition` parameters for files:
+```bash
+sed -i 's/--partition=/--partition=<partition-name>/g' *.slurm
+sed -i 's/--account=/--account=<account-name>/g' *.slurm
+```
 
 Be aware that many of the GPU-capable algorithms are set to use GPUs. These settings will almost certainly need to be updated for your cluster.
