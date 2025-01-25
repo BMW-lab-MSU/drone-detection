@@ -40,27 +40,10 @@ results.Row.Recall = r;
 results.Row.F2 = f2;
 results.Row.MCC = mcc;
 
-% Compute the image results
-[imageConf,imageTrue,imagePred]  = ...
-    imageConfusion(results.Row.PredictedLabels,results.Row.TrueLabels);
-results.Image.Confusion = imageConf;
-results.Image.PredictedLabels = imagePred;
-results.Image.TrueLabels = imageTrue;
-
-[a, p, r, f2, ~, mcc] = analyzeConfusion(results.Image.Confusion);
-results.Image.Accuracy = a;
-results.Image.Precision = p;
-results.Image.Recall = r;
-results.Image.F2 = f2;
-results.Image.MCC = mcc;
-
 % Display results
 disp('Row results')
 disp(results.Row.Confusion)
 disp(results.Row)
-disp('Image results')
-disp(results.Image.Confusion)
-disp(results.Image)
 
 % Save results
 if ~exist(testingResultsDir,"dir")
