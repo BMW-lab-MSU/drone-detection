@@ -265,7 +265,7 @@ classdef CNN1d < DeepLearning1dClassifier
             params = obj.createCostMatrix(params);
 
             if opts.UseGPU
-                executionEnvironment = "gpu";
+                executionEnvironment = "multi-gpu";
             else
                 executionEnvironment = "cpu";
             end
