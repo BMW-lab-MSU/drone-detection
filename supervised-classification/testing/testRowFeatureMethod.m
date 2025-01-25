@@ -22,7 +22,7 @@ load(finalClassifierDir + filesep + classifierName,"classifier");
 
 % Load in the testing features and labels
 load(testingDataDir + filesep + "testingFeatures","testingFeatures");
-load(testingDataDir + filesep + "testingData","testingLabels");
+load(testingDataDir + filesep + "testingDataRaw","testingLabels");
 
 results.Row.TrueLabels = classifier.formatLabels(testingLabels);
 

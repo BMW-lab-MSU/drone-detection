@@ -21,7 +21,7 @@ dataSetup;
 load(finalClassifierDir + filesep + classifierName,"classifier");
 
 % Load in the testing data and labels
-load(testingDataDir + filesep + "testingData","testingLabels","testingData");
+load(testingDataDir + filesep + "testingDataRaw","testingLabels","testingData");
 
 results.Row.TrueLabels = classifier.formatLabels(testingLabels);
 
