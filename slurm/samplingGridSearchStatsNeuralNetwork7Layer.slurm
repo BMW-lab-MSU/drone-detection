@@ -5,16 +5,14 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=priority-bradwhitaker
+#SBATCH --partition=priority
 
 #SBATCH --cpus-per-task=32               # number of cores to allocate
-#SBATCH --mem=60G                        # ammount of Memory allocated
-#SBATCH --time=0-02:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --mem=120G                        # ammount of Memory allocated
+#SBATCH --time=0-08:00:00               # maximum job run time in days-hours:minutes:secconds
 
-#SBATCH --exclusive
-
-#SBATCH --array=1-16
+#SBATCH --array=1-12
 
 #SBATCH --job-name=stats-neural-net-7-sampling-search              # job name
 #SBATCH --output=log/%x-%A-%a.out         # standard output from job

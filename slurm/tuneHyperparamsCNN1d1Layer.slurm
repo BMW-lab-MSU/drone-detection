@@ -5,21 +5,21 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=group-bradwhitaker
+#SBATCH --partition=gpuunsafe
 
-#SBATCH --cpus-per-task=16               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
+#SBATCH --cpus-per-task=32               # number of cores to allocate
+#SBATCH --mem=250G                        # ammount of Memory allocated
 #SBATCH --time=0-16:00:00               # maximum job run time in days-hours:minutes:secconds
 
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:a100:4
 
 
 #SBATCH --job-name=cnn1d1layer-hyperparam-tuning              # job name
 #SBATCH --output=log/%x-%A-%a.out         # standard output from job
 #SBATCH --error=log/%x-%A-%a.err          # standard error from job
 
-module load cuDNN/8.7.0.84-CUDA-11.8.0
+module load cuDNN/8.9.7.29-CUDA-12.3.0
 
 module load math/matlab/2023a
 

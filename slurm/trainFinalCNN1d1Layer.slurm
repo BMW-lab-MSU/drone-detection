@@ -5,19 +5,19 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=group-bradwhitaker
+#SBATCH --partition=nextgen-gpu
 
-#SBATCH --cpus-per-task=16               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
-#SBATCH --time=0-06:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --cpus-per-task=32               # number of cores to allocate
+#SBATCH --mem=250G                        # ammount of Memory allocated
+#SBATCH --time=1-00:00:00               # maximum job run time in days-hours:minutes:secconds
 
 #SBATCH --gres=gpu:1
 
 
 #SBATCH --job-name=cnn1d1layer-training
-#SBATCH --output=log/%x-%A-%a.out         # standard output from job
-#SBATCH --error=log/%x-%A-%a.err          # standard error from job
+#SBATCH --output=log/%x-%j.out         # standard output from job
+#SBATCH --error=log/%x-%j.err          # standard error from job
 
 module load cuDNN/8.7.0.84-CUDA-11.8.0
 

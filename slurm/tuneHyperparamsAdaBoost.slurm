@@ -5,12 +5,12 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=priority-bradwhitaker
+#SBATCH --partition=gpupriority
 
 #SBATCH --cpus-per-task=16               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
-#SBATCH --time=0-04:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --mem=120G                        # ammount of Memory allocated
+#SBATCH --time=0-16:00:00               # maximum job run time in days-hours:minutes:secconds
 
 #SBATCH --gres=gpu:a100:1
 
@@ -22,4 +22,4 @@ module load math/matlab/2023a
 
 cd ../
 
-matlab -batch "pathSetup; tuneHyperparamsRowFeatureMethod(\"AdaBoost\",@AdaBoost,UseParallel=true)" 
+matlab -batch "pathSetup; tuneHyperparamsRowFeatureMethod(\"AdaBoost\",@AdaBoost,UseParallel=true,UseGPU=true)" 

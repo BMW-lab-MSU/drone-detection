@@ -5,12 +5,12 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=priority-bradwhitaker
+#SBATCH --partition=priority
 
-#SBATCH --cpus-per-task=32               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
-#SBATCH --time=0-08:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --cpus-per-task=64               # number of cores to allocate
+#SBATCH --mem=250G                        # ammount of Memory allocated
+#SBATCH --time=0-16:00:00               # maximum job run time in days-hours:minutes:secconds
 
 
 #SBATCH --job-name=nn3layer-hyperparam-tuning              # job name

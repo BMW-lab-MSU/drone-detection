@@ -5,14 +5,15 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=group-rci
+#SBATCH --partition=gpuunsafe
+#SBATCH --reservation=winter
 
 #SBATCH --cpus-per-task=16               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
-#SBATCH --time=0-02:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --mem=120G                        # ammount of Memory allocated
+#SBATCH --time=0-08:00:00               # maximum job run time in days-hours:minutes:secconds
 
-#SBATCH --array=1-16
+#SBATCH --array=1-12
 
 #SBATCH --gres=gpu:1
 

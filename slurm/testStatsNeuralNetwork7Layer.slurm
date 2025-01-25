@@ -5,12 +5,12 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=group-bradwhitaker
+#SBATCH --partition=nextgen
 
 #SBATCH --cpus-per-task=32              # number of cores to allocate
 #SBATCH --mem=128G                        # ammount of Memory allocated
-#SBATCH --time=0-00:30:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --time=0-08:00:00               # maximum job run time in days-hours:minutes:secconds
 
 
 #SBATCH --job-name=nn7layer-testing

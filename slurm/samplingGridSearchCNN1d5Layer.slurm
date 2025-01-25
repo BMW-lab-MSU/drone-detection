@@ -5,22 +5,23 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=group-bradwhitaker
+#SBATCH --partition=gpuunsafe
 
-#SBATCH --cpus-per-task=16               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
-#SBATCH --time=0-08:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --cpus-per-task=32               # number of cores to allocate
+#SBATCH --mem=250G
+#SBATCH --time=0-16:00:00               # maximum job run time in days-hours:minutes:secconds
 
-#SBATCH --array=1-16
+#SBATCH --array=1-12
 
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:2
 
 #SBATCH --job-name=cnn1d5layer-sampling-search              # job name
 #SBATCH --output=log/%x-%A-%a.out         # standard output from job
 #SBATCH --error=log/%x-%A-%a.err          # standard error from job
 
-module load math/matlab/2022a
+module load cuDNN/8.9.7.29-CUDA-12.3.0
+module load math/matlab/2023a
 
 cd ../
 

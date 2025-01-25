@@ -5,10 +5,10 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=priority-bradwhitaker
+#SBATCH --partition=priority
 #SBATCH --cpus-per-task=16               # number of cores to allocate
-#SBATCH --mem=32G                        # ammount of Memory allocated
+#SBATCH --mem=64G                        # ammount of Memory allocated
 #SBATCH --time=0-01:00:00               # maximum job run time in days-hours:minutes:secconds
 #SBATCH --job-name=split-data              # job name
 #SBATCH --output=log/%x-%j.out         # standard output from job

@@ -5,8 +5,8 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=priority-bradwhitaker
+#SBATCH --partition=priority
 #SBATCH --cpus-per-task=64               # number of cores to allocate
 #SBATCH --mem=128G                        # ammount of Memory allocated
 #SBATCH --time=0-01:00:00               # maximum job run time in days-hours:minutes:secconds

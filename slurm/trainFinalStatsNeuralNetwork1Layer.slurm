@@ -5,16 +5,16 @@
 ##
 ## Basic parameters
 ##
-#SBATCH --account=
-#SBATCH --partition=
+#SBATCH --account=group-bradwhitaker
+#SBATCH --partition=nextgen
 
-#SBATCH --cpus-per-task=32               # number of cores to allocate
-#SBATCH --mem=64G                        # ammount of Memory allocated
-#SBATCH --time=0-01:00:00               # maximum job run time in days-hours:minutes:secconds
+#SBATCH --cpus-per-task=64               # number of cores to allocate
+#SBATCH --mem=250G                        # ammount of Memory allocated
+#SBATCH --time=0-08:00:00               # maximum job run time in days-hours:minutes:secconds
 
 #SBATCH --job-name=nn1layer-training
-#SBATCH --output=log/%x-%A-%a.out         # standard output from job
-#SBATCH --error=log/%x-%A-%a.err          # standard error from job
+#SBATCH --output=log/%x-%j.out         # standard output from job
+#SBATCH --error=log/%x-%j.err          # standard error from job
 
 module load math/matlab/2023a
 
