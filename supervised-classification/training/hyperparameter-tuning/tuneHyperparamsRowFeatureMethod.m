@@ -84,16 +84,8 @@ results = bayesopt(minfcn,optimizableParams,IsObjectiveDeterministic=true,...
 % found during the data sampling grid search, use the hyperparameters associated
 % with that iteration of bayesopt. Otherwise, we'll use the hyperpararmetersr
 if results.MinObjective < originalObjective
-    % TODO: it would be more convenient to save the parameters from the
-    %       the classifier object itself because they are formatted how
-    %       the classifier needs them. The bayesopt parameters are not
-    %       always in the right format because some parameters, e.g.
-    %       FilterSize, needs one variable per layer in bayesopt, but is
-    %       an array for the classifier. Saving from the classifier also
-    %       saves all parameters, not just the the optimzable ones; this
-    %       is good if we used a non-default parameter for one of the
-    %       parameters we didn't optimize.
-    hyperparams = table2struct(bestPoint(results));
+    minIdx = results.IndexOfMinimumTrace(end);
+    hyperparams = results.UserDataTrace{minIdx}.Classifier.Hyperparams;
 else
     hyperparams = originalHyperparameters;
 end
@@ -108,6 +100,6 @@ end
 save(hyperparameterResultsDir + filesep + filename,...
     "hyperparams","results","-v7.3");
 
-writeValidationResultsToTxtFile(classifierName,true,results,validationLabels);
+writeValidationResultsToTxtFile(classifierName,results,validationLabels,hyperparams);
 
 end

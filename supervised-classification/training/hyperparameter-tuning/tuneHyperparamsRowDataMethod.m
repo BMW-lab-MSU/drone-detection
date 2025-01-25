@@ -83,7 +83,8 @@ results = bayesopt(minfcn,optimizableParams,IsObjectiveDeterministic=true,...
 % found during the data sampling grid search, use the hyperparameters associated
 % with that iteration of bayesopt. Otherwise, we'll use the hyperpararmetersr
 if results.MinObjective < originalObjective
-    hyperparams = table2struct(bestPoint(results));
+    minIdx = results.IndexOfMinimumTrace(end);
+    hyperparams = results.UserDataTrace{minIdx}.Classifier.Hyperparams;
 else
     hyperparams = originalHyperparameters;
 end
@@ -98,6 +99,6 @@ end
 save(hyperparameterResultsDir + filesep + filename,...
     "hyperparams","results","-v7.3");
 
-writeValidationResultsToTxtFile(classifierName,true,results,validationLabels);
+writeValidationResultsToTxtFile(classifierName,results,validationLabels,hyperparams);
 
 end
