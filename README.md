@@ -1,5 +1,6 @@
 # drone-detection
 
+This repository was for part of Trevor Vannoy's dissertation.
 
 # Data setup
 You can specify the locations of the data and results folders in the `dataSetup.m` script. By default, the scripts uses the following relative path setup, where `code` is a folder containing this repository:
